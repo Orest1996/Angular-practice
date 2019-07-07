@@ -1,0 +1,46 @@
+<div class="container">
+  <h5>Выберите автомобиль</h5>
+  <button class="btn btn-danger" (click)="carSelect('bmw')">BMW</button>
+  <button class="btn btn-success" (click)="carSelect('audi')">Audi</button>
+  <button class="btn btn-info" (click)="carSelect('mercedes')">Mercedes</button>
+
+  <form (submit)="addOpt(option.value)">
+    <div class="form-group">
+      <label for="option">Add new possibility</label>
+      <br>
+      <input type="text" id="option" placeholder="Enter something" #option>
+      <br>
+      <br>
+      <button class="btn btn-outline-success">Add</button>
+    </div>
+  </form>
+  <h5>Редактировать обьект</h5>
+  <button class="btn btn-danger" (click)="showEdit()">Редактировать</button>
+  <form *ngIf="isEdit">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Название автомобиля" [(ngModel)]="name" name="name"><br>
+      <input type="text" class="form-control" placeholder="Модель автомобиля" [(ngModel)]="model" name="model"><br>
+      <input type="text" class="form-control" placeholder="Скорость автомобиля" [(ngModel)]="speed" name="speed"><br>
+      <input type="text" class="form-control" placeholder="Цвет автомобиля" [(ngModel)]="colors.car" name="car"><br>
+      <input type="text" class="form-control" placeholder="Цвет салона" [(ngModel)]="colors.salon" name="salon"><br>
+      <input type="text" class="form-control" placeholder="Цвет дисков" [(ngModel)]="colors.wheels" name="wheels"><br>
+    </div>
+  </form>
+    <h4><mark>Автомобиль :</mark> {{ name }}<small> {{model}}</small></h4>
+  <div class="alert alert-success">
+    Характеристики автомобиля :
+    <ul>
+      <li>Скорость :<strong> {{speed}}</strong>км</li>
+      <li>Цвет автомобиля :<strong> {{colors.car}}</strong></li>
+      <li>Цвет салона :<strong> {{colors.salon}}</strong></li>
+      <li>Цвет дисков :<strong> {{colors.wheels}}</strong></li>
+    </ul>
+  </div>
+    <h5>Возможности автомобиля :</h5>
+  <div class="alert alert-warning">
+    <ul>
+      <li *ngFor="let opt of options">{{opt}} <button class="btn delete btn-warning btn-sm" (click)="deleteOpt(opt)">x</button></li>
+    </ul>
+  </div>
+
+</div>
